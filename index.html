@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Image Gallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="index.html" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+                     viewBox="0 0 24 24">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <strong>Simple Image Gallery</strong>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <article>
+        <!-- Full image area -->
+        <section class="py-3 container" id="fullImage">
+            <div class="row">
+                <figure class="figure col-md-12 col-lg-8 mx-auto">
+                    <img src="images/placeholder.svg" class="figure-img img-fluid rounded" alt="Full image placeholder">
+                    <figcaption class="figure-caption text-center">A caption for the above image.</figcaption>
+                </figure>
+                <div class="col-md-12 col-lg-8 mx-auto">
+                    <p class="border rounded bg-light p-3 ps-5" id="notes" contenteditable="true">Enter your notes here!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thumbnail area -->
+        <section class="py-3 bg-light" id="thumbnails">
+            <div class="container">
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-6 g-3">
+                    <div class="col d-flex align-items-stretch">
+                        <div class="card shadow-sm">
+                            <a href="images/yellowstone_national_park.webp" class="card-link">
+                                <img src="images/yellowstone_national_park_thumb.webp"
+                                     alt="Yellowstone National Park"
+                                     class="img-thumbnail">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">Yellowstone National Park</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-stretch">
+                        <div class="card shadow-sm">
+                            <a href="images/crater_lake_national_park.webp" class="card-link">
+                                <img src="images/crater_lake_national_park_thumb.webp"
+                                     alt="Crater Lake National Park"
+                                     class="img-thumbnail">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">Crater Lake National Park</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-stretch">
+                        <div class="card shadow-sm">
+                            <a href="images/acadia_national_park.webp" class="card-link">
+                                <img src="images/acadia_national_park_thumb.webp"
+                                     alt="Acadia National Park"
+                                     class="img-thumbnail">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">Acadia National Park</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-flex align-items-stretch">
+                        <div class="card shadow-sm">
+                            <a href="images/arches_national_park.webp" class="card-link">
+                                <img src="images/arches_national_park_thumb.webp"
+                                     alt="Arches National Park"
+                                     class="img-thumbnail">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">Arches National Park</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-stretch">
+                        <div class="card shadow-sm">
+                            <a href="images/sequoia_national_park.webp" class="card-link">
+                                <img src="images/sequoia_national_park_thumb.webp"
+                                     alt="Sequoia National Park"
+                                     class="img-thumbnail">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">Sequoia National Park</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-stretch">
+                        <div class="card shadow-sm">
+                            <a href="images/yosemite_national_park.webp" class="card-link">
+                                <img src="images/yosemite_national_park_thumb.webp"
+                                     alt="Yosemite National Park"
+                                     class="img-thumbnail">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">Yosemite National Park</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>
+
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="float-end mb-1">
+            <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1 fw-bold">Simple Image Gallery</p>
+        <p class="mb-0">A JavaScript DOM and local storage exercise template.</p>
+    </div>
+</footer>
+
+<script src="js/gallery.js"></script>
+</body>
+</html>
