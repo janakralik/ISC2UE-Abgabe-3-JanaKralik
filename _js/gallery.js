@@ -4,14 +4,14 @@
  * Selects a random full image at the start and displays it.
  */
 function showRandomImageAtStart() {
-  const figure = document.querySelector("figure");
-  const thumbnails = document.querySelectorAll(".thumbnail");
-  const links = document.querySelectorAll(".thumbnail a");
-  const randomIndex = Math.floor(Math.random() * thumbnails.length);
+  const links = document.getElementsByClassName("card-link");
+  const randomLink = links[getRandomInt(0, links.length)];
+  const imageUrl = randomlink.href;
+  const randomIndex = randomLink.getAttribute("alt");
   const randomThumbnail = thumbnails[randomIndex];
-  function switchFullImage(imageUrl, altText) {}
+  switchFullImage(imageUrl, randomIndex) {}
   switchFullImage(links[randomIndex].href, randomThumbnail.alt);
-  randomThumbnail.nextElementSibling.classList.add("bg-dark", "text-white");
+  randomLink.nextElementSibling.classList.add("bg-dark", "text-white");
 }
 //  Select all 6 links (<a>) in the thumbnail section. They contain the URLs to the full images.
 //  Select a random entry out of these 6.
@@ -28,11 +28,12 @@ function showRandomImageAtStart() {
 
 function prepareLinks() {
   //  Select all the 6 links (<a>) in the thumbnail section.
-  const links = document.querySelectorAll(".thumbnail a");
+  const thumbnailsection = document.getElementById("thumbnails");
+  const imagelinks = thumbnailsection.querySelectorAll("a");
 
   //  Set an event listener for the click event on every <a> element.
   // (or advanced: think of a way to do it with one single handler)
-  links.forEach((link) => {
+  imagelinks.forEach((link) => {
     link.addEventListener("click", function (event) {
       //  The callback of the listener should do the following things:
       // - Remove the .bg-dark and .text-white classes from the card where it's currently set.
@@ -63,13 +64,13 @@ function storeNotes() {
   const notesField = document.querySelector("#notes");
   notesField.addEventListener("blur", function () {
     //  When the notes field loses focus, store the notes for the current image in the local storage.
-    const imageKey = document.querySelector(".full-img").src; // Assuming .full-img is the class for the full image element
-    const notes = notesField.value;
+    const imageKey = document.querySelector("img").src; 
+    const notes = notesField.innerHTML;
     if (notes) {
       localStorage.setItem(imageKey, notes);
     } else {
       //  If the notes field is empty, remove the local storage entry.
-      localStorage.removeItem(imageKey);
+      localStorage.removeItem(imageKey, notes);
     }
   });
 }
@@ -82,14 +83,14 @@ function storeNotes() {
  */
 function switchFullImage(imageUrl, imageDescription) {
   //  Get the <img> element for the full image. Select it by its class or tag name.
-  const fullImageElement = document.querySelector(".full-img"); // Assuming .full-img is the class for the full image element
+  const fullImageElement = document.querySelector("img"); 
 
   // Set its src and alt attributes with the values from the parameters (imageUrl, imageDescription).
   fullImageElement.src = imageUrl;
   fullImageElement.alt = imageDescription;
 
   //  Select the <figcaption> element.
-  const figCaptionElement = document.querySelector("figcaption"); // Assuming <figcaption> is the tag name for the caption element
+  const figCaptionElement = document.querySelector("figcaption"); 
 
   //  Set the description (the one you used for the alt attribute) as its text content.
   figCaptionElement.textContent = imageDescription;
@@ -101,7 +102,7 @@ function switchFullImage(imageUrl, imageDescription) {
  */
 function loadNotes(key) {
   //  Select the notes field.
-  const notesField = document.getElementById("notes"); // Assuming 'notes' is the ID of the notes field element
+  const notesField = document.getElementById("notes"); 
 
   //  Check the local storage at the provided key.
   const notes = localStorage.getItem(key);
