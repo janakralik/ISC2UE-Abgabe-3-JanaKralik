@@ -14,9 +14,10 @@ function showRandomImageAtStart() {
   //  Call switchFullImage() with the URL of the random image and the alt attribute of the thumbnail (it contains the description).
   switchFullImage(imageUrl, randomIndex);
   //  Set a background color (classes .bg-dark and .text-white) to the card-body of your random image (hint: it's the sibling element of your link).
-  randomLink.nextElementSibling.classList.add("bg-dark", "text-white");
+  const randomCardBody = randomLink.nextElementSibling;
+  randomCardBody.classList.add("bg-dark");
+  randomCardBody.classList.add("text-white");
 }
-
 
 /**
  * Prepare the links on the full images so that they execute the following tasks:
@@ -34,24 +35,25 @@ function prepareLinks() {
   // (or advanced: think of a way to do it with one single handler)
   imagelinks.forEach(function (link) {
     link.addEventListener("click", function (event) {
+      // - Prevent the default action for the link (we don't want to follow it).
+      event.preventDefault();
       //  The callback of the listener should do the following things:
       // - Remove the .bg-dark and .text-white classes from the card where it's currently set.
-      const currentCard = link.parentElement.parentElement;
-      currentCard.classList.remove("bg-dark", "text-white");
+      imagelinks.forEach(function (link2) {
+        const currentCard = link2.nextElementSibling;
+        currentCard.classList.remove("bg-dark", "text-white");
+      });
 
       // - Add both classes again to the card where the click happened (hint: "this" contains the very <a> element, where the click happened).
-      this.parentElement.parentElement.classList.add("bg-dark", "text-white");
+      this.nextElementSibling.classList.add("bg-dark", "text-white");
 
       // - Call switchFullImage() with the URL clicked link and the alt attribute of the thumbnail.
-      switchFullImage(this.href, this.parentElement.querySelector("img").alt);
+      switchFullImage(this.href, this.firstElementChild.alt);
 
       // - Implement and then call loadNotes() with the key for the current image (hint: the full image's URL makes an easy and unique key).
       const imageKey = this.href;
-      const imageDescription = this.parentElement.querySelector("img").alt;
-      loadNotes(imageKey, imageDescription);
-
-      // - Prevent the default action for the link (we don't want to follow it).
-      event.preventDefault();
+      loadNotes(imageKey);
+      storeNotes(imageKey);
     });
   });
 }
